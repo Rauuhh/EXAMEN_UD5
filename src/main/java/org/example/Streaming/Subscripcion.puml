@@ -1,0 +1,44 @@
+@startuml
+package org.example.Streaming {
+
+    abstract class Subscripcion {
+        - nombrePlan : String
+        - precio : double
+
+        + Subscripcion(nombrePlan : String, precio : double)
+        + mostrarInfo() : void
+        + obtenerBeneficios() : void abstract
+        + obtenerPeriodoPrueba() : void abstract
+        + getNombrePlan() : String
+        + setNombrePlan(nombrePlan : String) : void
+        + getPrecio() : double
+        + setPrecio(precio : double) : void
+    }
+
+    class PlanPremium {
+        + PlanPremium(nombrePlan : String, precio : double)
+
+    }
+
+    class PlanGratis { 
+        + PlanGratis(nombrePlan : String, precio : double)
+
+    }
+
+    class PlanFamiliar {
+        + PlanFamiliar(nombrePlan : String, precio : double)
+
+    }
+
+    class PlanBasico {
+        + PlanBasico(nombrePlan : String, precio : double)
+
+    }
+
+    Subscripcion <|-- PlanPremium
+    Subscripcion <|-- PlanGratis
+    Subscripcion <|-- PlanFamiliar
+    Subscripcion <|-- PlanBasico
+
+}
+@enduml

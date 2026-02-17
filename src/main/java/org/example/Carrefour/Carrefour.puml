@@ -1,0 +1,62 @@
+@startuml
+package org.example.Carrefour {
+
+    class Persona {
+        - codigo : int
+        - nombre : String
+        - sueldo : double
+        --
+        + Persona(codigo:int, nombre:String, sueldo:double)
+        + getCodigo() : int
+        + setCodido(codigo:int) : void
+        + getNombre() : String
+        + setNombre(nombre:String) : void
+        + getSueldo() : double
+        + setSueldo(sueldo:double) : void
+        + mostrarInfo() : void
+        + toString() : String
+    }
+
+    class Cajero {
+        - caja : int
+        - entrada : Scanner {static}
+        --
+        + Cajero(codigo:int, nombre:String, sueldo:double)
+        + getCaja() : int
+        + setCaja() : void
+        + mostrarInfo() : void
+        + toString() : String
+    }
+
+    class Reponedor {
+        - pasillo : int
+        --
+        + Reponedor(codigo:int, nombre:String, sueldo:double, pasillo:int)
+        + getPasillo() : int
+        + setPasillo(pasillo:int) : void
+        + mostrarInfo() : void
+        + toString() : String
+    }
+
+    class Seguridad {
+        - empresa : String
+        - armas : ArrayList<String>
+        --
+        + Seguridad(codigo:int, nombre:String, sueldo:double, empresa:String)
+        + anyadirArma(arm:String) : void
+        + getEmpresa() : String
+        + setEmpresa(empresa:String) : void
+        + getArmas() : ArrayList<String>
+        + setArmas(armas:ArrayList<String>) : void
+        + mostrarInfo() : void
+        + toString() : String
+    }
+
+    Persona <|-- Cajero
+    Persona <|-- Reponedor
+    Persona <|-- Seguridad
+
+  
+}
+
+@enduml
