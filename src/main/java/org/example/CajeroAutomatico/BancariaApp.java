@@ -33,8 +33,7 @@ public class BancariaApp {
             case 1:
                 cuentaBancaria.consultarSaldo();
                 break;
-            case 2:
-                cuentaBancaria.ingresarDinero();
+
         }
     }
 

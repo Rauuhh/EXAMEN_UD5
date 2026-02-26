@@ -2,7 +2,7 @@ package org.example.CopaDelRey;
 
 import java.util.Scanner;
 
-public class Entrenador extends MutxamelFC{
+public class Entrenador extends MutxamelFC implements AccionesDeportivas{
     static Scanner entrada = new Scanner(System.in);
     private Equipos equipo;
     private String formacionPreferida;
@@ -10,7 +10,11 @@ public class Entrenador extends MutxamelFC{
     public Entrenador(String nombre, int edad, Equipos equipo, String formacionPreferida) {
         super(nombre, edad);
         this.equipo = equipo;
-        this.formacionPreferida = formacionPreferida;
+        try{
+            setFormacionPreferida(formacionPreferida);
+        }catch (Formacion e){
+
+        }
 
     }
 
@@ -27,7 +31,11 @@ public class Entrenador extends MutxamelFC{
     }
 
     public void setFormacionPreferida(String formacionPreferida) {
-        this.formacionPreferida = formacionPreferida;
+        if (formacionPreferida.matches("^[0-9]-[0-9][0-9]$")){
+            this.formacionPreferida = formacionPreferida;
+        }else{
+            throw new Formacion();
+        }
     }
 
     @Override
@@ -36,5 +44,31 @@ public class Entrenador extends MutxamelFC{
                 "equipo=" + equipo +
                 ", formacionPreferida='" + formacionPreferida + '\'' +
                 '}';
+    }
+
+    @Override
+    public void concentrarse() {
+        System.out.println("El entrenador " + getNombre() + " se esta concentrando ");
+    }
+
+    @Override
+    public void viajar(String ciudad) {
+        System.out.println("El entrenador " + getNombre() + " esta viajando a " + ciudad);
+    }
+
+    @Override
+    public void celebrarGol() {
+        System.out.println("VAMOS COÑOOOOO ESE ES MI EQUIPO");
+    }
+
+    @Override
+    public void entrenar() {
+        System.out.println("El entrenador " +  getNombre() + " esta entrenado a: " + getEquipo());
+    }
+
+    @Override
+    public void jugarPartido(String rival) {
+        System.out.println("Esta viendo como : " + getEquipo() + " juega" +
+                "");
     }
 }
