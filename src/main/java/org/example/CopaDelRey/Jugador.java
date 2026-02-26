@@ -1,6 +1,10 @@
 package org.example.CopaDelRey;
 
-public class Jugador extends MutxamelFC{
+import java.util.ArrayList;
+
+public class Jugador extends MutxamelFC implements AccionesDeportivas{
+
+    private static ArrayList<Jugador> listaJugadores = new ArrayList<>();
 
     private Equipos categoria;
     private int dorsal;
@@ -9,7 +13,13 @@ public class Jugador extends MutxamelFC{
     public Jugador(String nombre, int edad, Equipos categoria, int dorsal, Posiciones posicion) {
         super(nombre, edad);
         this.categoria = categoria;
-        this.dorsal = dorsal;
+        this.posiciones = posicion;
+        try {
+            setDorsal(dorsal);
+            listaJugadores.add(this);
+        }catch (NumeroDorsal e){
+            System.out.println("No se pudo crear al jugador");
+        }
     }
 
     public Equipos getCategoria() {
@@ -24,7 +34,14 @@ public class Jugador extends MutxamelFC{
         return dorsal;
     }
 
-    public void setDorsal(int dorsal) {
+    public void setDorsal(int dorsal){
+        for (Jugador jugador : listaJugadores){
+            if (jugador.getCategoria().equals(categoria)){
+                if (jugador.getDorsal() == dorsal){
+                    throw new NumeroDorsal();
+                }
+            }
+        }
         this.dorsal = dorsal;
     }
 
@@ -43,5 +60,30 @@ public class Jugador extends MutxamelFC{
                 ", dorsal=" + dorsal +
                 ", posiciones=" + posiciones +
                 '}';
+    }
+
+    @Override
+    public void concentrarse() {
+        System.out.println(getNombre() + " se esta concentrando");
+    }
+
+    @Override
+    public void viajar(String ciudad) {
+        System.out.println(getNombre() + " esta viajando a " + ciudad);
+    }
+
+    @Override
+    public void celebrarGol() {
+        System.out.println("QUE BUENO SOY CHEE");
+    }
+
+    @Override
+    public void entrenar() {
+        System.out.println(getNombre() + " esta entrenando");
+    }
+
+    @Override
+    public void jugarPartido(String rival) {
+        System.out.println(getNombre() + " esta jugando contra " + rival);
     }
 }
